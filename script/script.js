@@ -11,18 +11,14 @@ APP.calculatorClose = $('.calculator-close');
 APP.$document.ready(function() {
 	APP.calculatorClose.on('click', function() {
 		$('.calculator-container').addClass('unfixed');
-		setTimeout(function (){
-			$('.main-screen__bg').removeClass('show');
-		}, 300);
+		$('.main-screen__bg').removeClass('show');
 		setTimeout(function (){
 		  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
-		  $('html').removeClass('overflow');
 		}, 600);
 	})
 
 	APP.calculatorShowBtn.on('click', function() {
 		$('.calculator-container').addClass('fixed');
-		$('html').addClass('overflow');
 		if($(this).hasClass('main-screen__btn')) {
 			$('html').animate({ scrollTop : 0}, 300)
 			$('.main-screen__bg').addClass('show');

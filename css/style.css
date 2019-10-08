@@ -626,7 +626,7 @@ textarea.error {
   right: 0;
   top: 0;
   transform: translateX(100%);
-  transition: transform .3s;
+  transition: transform .6s;
 }
 
 .main-screen__bg::before {
@@ -638,24 +638,24 @@ textarea.error {
   left: 0;
   top: 0;
   transform: translateX(-100%);
-  transition: transform .3s;
+  transition: transform .6s;
 }
 
 .main-screen__bg .figure {
-  display: none;
   position: absolute;
   top: 125px;
   z-index: 1;
-  transform: scale(0.2);
-  transition: transform .3s;
+  transition: transform .6s;
 }
 
 .main-screen__bg .figure:first-of-type {
   right: -600px;
+  transform: translateX(100%);
 }
 
 .main-screen__bg .figure:last-of-type {
   left: -500px;
+  transform: translateX(-100%);
 }
 
 .main-screen__bg.show::after {

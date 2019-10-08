@@ -456,7 +456,7 @@ textarea {
       right: 0;
       top: 0;
       transform: translateX(100%);
-      transition: transform .3s;
+      transition: transform .6s;
     }
     &::before {
       content: "";
@@ -467,20 +467,20 @@ textarea {
       left: 0;
       top: 0;
       transform: translateX(-100%);
-      transition: transform .3s;
+      transition: transform .6s;
     }
     .figure {
-      display: none;
       position: absolute;
       top: 125px;
       z-index: 1;
-      transform: scale(.2);
-      transition: transform .3s;
+      transition: transform .6s;
       &:first-of-type {
         right: -600px;
+        transform: translateX(100%);
       }
       &:last-of-type {
         left: -500px;
+        transform: translateX(-100%);
       }
     }
     &.show {
