@@ -12,10 +12,12 @@ APP.$document.ready(function() {
 	APP.calculatorClose.on('click', function() {
 		$('.calculator-container').addClass('unfixed');
 		setTimeout(function (){
+			$('.main-screen__bg').removeClass('show');
+		}, 300);
+		setTimeout(function (){
 		  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
 		  $('html').removeClass('overflow');
-		  $('.main-screen__bg').removeClass('show');
-		}, 300);
+		}, 600);
 	})
 
 	APP.calculatorShowBtn.on('click', function() {

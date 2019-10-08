@@ -642,6 +642,7 @@ textarea.error {
 }
 
 .main-screen__bg .figure {
+  display: none;
   position: absolute;
   top: 125px;
   z-index: 1;
@@ -2509,6 +2510,7 @@ textarea.error {
   height: calc(100vh - 100px);
   transform: translateX(-50%);
   border-radius: 0;
+  box-shadow: none;
   animation: appearance .6s ease-in;
 }
 
