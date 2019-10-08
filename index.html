@@ -6,6 +6,7 @@
 	<title>Стяжка пола под ключ</title>
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
 	<link rel="stylesheet" href="css/slick-theme.css">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/media.css">
 </head>
@@ -31,12 +32,16 @@
 	</header>
 	<main>
 		<section class="main-screen" style="background-image: url(img/main-screen-bg.jpg);">
+			<div class="main-screen__bg">
+				<img src="img/main-screen-figure.svg" alt="" aria-hidden="true" class="figure">
+				<img src="img/main-screen-figure.svg" alt="" aria-hidden="true" class="figure">
+			</div>
 			<div class="main-screen-container flex jc-center">
 				<div class="main-screen__title font-alt">
 					<h1 class="bold">Стяжка пола под ключ</h1>
 					<div class="flex jc-between bold"><span>и штукатурка стен</span><span>с гарантией</span></div>
 				</div>
-				<button class="main-screen__btn standart-btn">Рассчитать стоимость</button>
+				<button class="main-screen__btn standart-btn calculator-show">Рассчитать стоимость</button>
 			</div>
 		</section>
 		<section class="features">
@@ -97,6 +102,7 @@
 			</div>
 		</section>
 		<section class="advantages">
+			<img src="img/advantages-bg.png" alt="" aria-hidden="true" class="advantages__bg">
 			<div class="wrapper">
 				<h1 class="advantages__title title-l">Почему стоимость стяжки у разных компаний может так сильно отличаться?</h1>
 				<p class="advantages__text light text-center">В погоне за экономией средств многие сталкиваются с непрофессиональными умельцами. Мы давно занимаемся укладкой пола и представляем какого качества будет работа по низкой цене. Сравните качество работ, которое может ждать вас под видом привлекательно низкой цены и качество работы профессионалов выполненной со строгим соблюдением</p>
@@ -543,12 +549,14 @@
 				</div>
 			</div>
 		</section>
-		<section class="partners wrapper">
-			<h1 class="partners__title title-l">С кем мы работаем?</h1>
-			<h2 class="partners__subtitle bold">Наши партнеры</h2>
-			<div class="partners-container flex flex-wrap">
-				<div class="partners-item" style="background-image: url(img/partners-1.jpg);"></div>
-				<div class="partners-item" style="background-image: url(img/partners-2.jpg);"></div>
+		<section class="partners">
+			<div class="wrapper">
+				<h1 class="partners__title title-l">С кем мы работаем?</h1>
+				<h2 class="partners__subtitle bold">Наши партнеры</h2>
+				<div class="partners-container flex flex-wrap">
+					<div class="partners-item" style="background-image: url(img/partners-1.jpg);"></div>
+					<div class="partners-item" style="background-image: url(img/partners-2.jpg);"></div>
+				</div>
 			</div>
 		</section>
 		<section class="clients">
@@ -576,27 +584,30 @@
 				</div>
 			</div>
 		</section>
-		<section class="products wrapper">
-			<h1 class="products__title title-l">Смеси по уникальным ценам</h1>
-			<h2 class="products__subtitle light">Краткий сопроводительный текст в одну строку</h2>
-			<div class="products-container flex flex-wrap">
-				<div class="products-item flex flex-column ai-center jc-between">
-					<span class="products-item__name medium">POLIMIN СЦ-5 25 кг</span>
-					<img src="img/products-1.png" alt="Смесь" class="products-item__img">
-					<span class="products-item__price uppercase medium"><span class="bold">70.50 </span>грн/шт.</span>
-					<button class="products-item__btn standart-btn">Приобрести смесь</button>
-				</div>
-				<div class="products-item flex flex-column ai-center jc-between">
-					<span class="products-item__name medium">POLIMIN СЦ-5 25 кг</span>
-					<img src="img/products-1.png" alt="Смесь" class="products-item__img">
-					<span class="products-item__price uppercase medium"><span class="bold">70.50 </span>грн/шт.</span>
-					<button class="products-item__btn standart-btn">Приобрести смесь</button>
+		<section class="products">
+			<div class="wrapper">
+				<h1 class="products__title title-l">Смеси по уникальным ценам</h1>
+				<h2 class="products__subtitle light">Краткий сопроводительный текст в одну строку</h2>
+				<div class="products-container flex flex-wrap">
+					<div class="products-item flex flex-column ai-center jc-between">
+						<span class="products-item__name medium">POLIMIN СЦ-5 25 кг</span>
+						<img src="img/products-1.png" alt="Смесь" class="products-item__img">
+						<span class="products-item__price uppercase medium"><span class="bold">70.50 </span>грн/шт.</span>
+						<button class="products-item__btn standart-btn">Приобрести смесь</button>
+					</div>
+					<div class="products-item flex flex-column ai-center jc-between">
+						<span class="products-item__name medium">POLIMIN СЦ-5 25 кг</span>
+						<img src="img/products-1.png" alt="Смесь" class="products-item__img">
+						<span class="products-item__price uppercase medium"><span class="bold">70.50 </span>грн/шт.</span>
+						<button class="products-item__btn standart-btn">Приобрести смесь</button>
+					</div>
 				</div>
 			</div>
 		</section>
 		<section class="calculator">
 				<h1 class="calculator__title title-l">Хотите заказать услугу?</h1>
 				<div class="calculator-container wrapper flex flex-column ai-center">
+					<div class="calculator-close"></div>
 					<div class="calculator-header flex flex-column ai-center">
 						<span class="calculator-header__title black uppercase">Выберите Услугу</span>
 						<div class="calculator-service flex jc-between ai-center">
@@ -627,8 +638,12 @@
 					</div>
 					<div class="calculator-line">
 						<span class="calculator__subtitle uppercase black">Площадь, м<sup class="top-index">2</sup></span>
-						<div class="calculator-size">
-							
+						<div class="calculator-size flex jc-between ai-center">
+							<span>10</span>
+							<div id="slider">
+								<div id="custom-handle" class="ui-slider-handle "><span class="number flex jc-center ai-center semibold"></span></div>
+							</div>
+							<span>500</span>
 						</div>
 					</div>
 					<div class="calculator-line flex jc-between">
@@ -670,7 +685,25 @@
 		</div>
 	</footer>
 	<script src="script/jquery.js"></script>
+	<script src="script/jquery-ui.min.js"></script>
 	<script src="script/slick.min.js"></script>
 	<script src="script/script.js"></script>
+	<script>
+  $( function() {
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+      create: function() {
+        handle.find('.number').text('10');
+      },
+      slide: function( event, ui ) {
+      	if(ui.value * 5 >= '10') {
+      		handle.find('.number').text( ui.value * 5 );
+      	} else {
+      		handle.find('.number').text('10');
+      	}
+      }
+    });
+  } );
+  </script>
 </body>
 </html>

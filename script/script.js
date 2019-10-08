@@ -4,9 +4,29 @@ APP.slider = $('.slider-container');
 APP.sliderArrow = $('.slider-arrow');
 APP.sliderNav = $('.slider-arrow, .slider-dots');
 APP.testimonialsTab = $('.testimonials-tabs__item');
+APP.calculatorShowBtn = $('.calculator-show');
+APP.calculatorClose = $('.calculator-close');
 
 
 APP.$document.ready(function() {
+	APP.calculatorClose.on('click', function() {
+		$('.calculator-container').addClass('unfixed');
+		setTimeout(function (){
+		  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
+		  $('html').removeClass('overflow');
+		  $('.main-screen__bg').removeClass('show');
+		}, 300);
+	})
+
+	APP.calculatorShowBtn.on('click', function() {
+		$('.calculator-container').addClass('fixed');
+		$('html').addClass('overflow');
+		if($(this).hasClass('main-screen__btn')) {
+			$('html').animate({ scrollTop : 0}, 300)
+			$('.main-screen__bg').addClass('show');
+		}
+	})
+
 	APP.testimonialsTab.on('click', function() {
 		let data = $(this).data('switch');
 

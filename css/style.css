@@ -491,9 +491,11 @@ textarea.error {
 .socials__item {
   width: 48px;
   height: 48px;
+  font-size: 16px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.15);
+  transition: color .3s, background-color .3s;
 }
 
 .socials__item + .socials__item {
@@ -502,6 +504,10 @@ textarea.error {
 
 .socials__item + .socials__item:nth-of-type(2) {
   margin-top: 140px;
+}
+
+.socials__item:first-of-type {
+  font-size: 24px;
 }
 
 .scroll-arrow {
@@ -602,6 +608,67 @@ textarea.error {
   background: 50% 50% / cover no-repeat;
 }
 
+.main-screen__bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+}
+
+.main-screen__bg::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background-color: #f5f5f5;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  transition: transform .3s;
+}
+
+.main-screen__bg::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background-color: #f5f5f5;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  transition: transform .3s;
+}
+
+.main-screen__bg .figure {
+  position: absolute;
+  top: 125px;
+  z-index: 1;
+  transform: scale(0.2);
+  transition: transform .3s;
+}
+
+.main-screen__bg .figure:first-of-type {
+  right: -600px;
+}
+
+.main-screen__bg .figure:last-of-type {
+  left: -500px;
+}
+
+.main-screen__bg.show::after {
+  transform: none;
+}
+
+.main-screen__bg.show::before {
+  transform: none;
+}
+
+.main-screen__bg.show .figure {
+  transform: none;
+}
+
 .main-screen-container {
   position: relative;
   width: calc(100% - 110px);
@@ -643,6 +710,7 @@ textarea.error {
   position: relative;
   margin-bottom: 150px;
   margin-top: -140px;
+  z-index: 1;
 }
 
 .features__bg {
@@ -890,17 +958,31 @@ textarea.error {
 /**************/
 /* advantages */
 .advantages {
+  position: relative;
   margin-bottom: 80px;
+}
+
+.advantages__bg {
+  position: absolute;
+  left: 50%;
+  top: 110px;
+  transform: translateX(-50%);
 }
 
 .advantages__title {
   margin-bottom: 60px;
+  position: relative;
 }
 
 .advantages__text {
+  position: relative;
   margin-bottom: 120px;
   font-size: 17px;
   line-height: 30px;
+}
+
+.advantages-container {
+  position: relative;
 }
 
 .advantages-container-titles {
@@ -2249,7 +2331,8 @@ textarea.error {
 /************/
 /* partners */
 .partners {
-  margin-bottom: 60px;
+  padding-bottom: 60px;
+  background-color: #f4f6f7;
 }
 
 .partners__title {
@@ -2317,6 +2400,7 @@ textarea.error {
 .products {
   padding-top: 120px;
   padding-bottom: 115px;
+  background-color: #f4f6f7;
 }
 
 .products__title {
@@ -2378,6 +2462,24 @@ textarea.error {
 
 /**************/
 /* calculator */
+@keyframes appearance {
+  0% {
+    transform: translateY(100vh) translateX(-50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes disappearance {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateY(100vh) translateX(-50%);
+  }
+}
+
 .calculator {
   padding-bottom: 90px;
   padding-top: 90px;
@@ -2398,6 +2500,61 @@ textarea.error {
   border-radius: 20px;
   box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.07);
   padding: 0 155px 50px;
+}
+
+.calculator-container.fixed {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  height: calc(100vh - 100px);
+  transform: translateX(-50%);
+  border-radius: 0;
+  animation: appearance .6s ease-in;
+}
+
+.calculator-container.fixed .calculator-close {
+  display: block;
+}
+
+.calculator-container.unfixed {
+  animation: disappearance .6s ease-in;
+}
+
+.calculator-close {
+  display: none;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: block;
+  transform: none;
+  transition: transform .3s;
+}
+
+.calculator-close::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background-color: #b7b7b7;
+  position: absolute;
+  left: -2px;
+  top: 6px;
+  transform: rotate(45deg);
+  transition: background-color .3s;
+}
+
+.calculator-close::after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background-color: #b7b7b7;
+  position: absolute;
+  left: -2px;
+  top: 6px;
+  transform: rotate(135deg);
+  transition: background-color .3s;
 }
 
 .calculator-header {
@@ -2470,6 +2627,74 @@ textarea.error {
   margin-top: 40px;
   width: 400px;
   height: 48px;
+}
+
+.calculator-size {
+  padding-bottom: 20px;
+}
+
+.ui-slider-horizontal {
+  height: 10px;
+  background-color: transparent;
+  width: calc(100% - 100px);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.ui-slider-horizontal::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+  background-color: #424242;
+}
+
+.ui-slider-range {
+  background-color: #5d0400;
+}
+
+.ui-slider .ui-slider-handle {
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  cursor: pointer;
+  transition: border .3s;
+}
+
+.ui-slider .ui-slider-handle::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #575757;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.ui-slider .number {
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  left: 50%;
+  top: 25px;
+  background-color: #fff;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.15);
+  transform: translateX(-50%);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #3d3d3d;
+  pointer-events: none;
+  user-select: none;
 }
 
 /**********/
