@@ -7,14 +7,29 @@ APP.testimonialsTab = $('.testimonials-tabs__item');
 APP.calculatorShowBtn = $('.calculator-show');
 APP.calculatorClose = $('.calculator-close');
 
+function calculatorHide() {
+	$('.calculator-container').addClass('unfixed');
+	$('.main-screen__bg').removeClass('show');
+	setTimeout(function (){
+	  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
+	}, 600);
+}
 
 APP.$document.ready(function() {
+	
+	let lastScrollTop = 0;
+	$(window).scroll(function(event){
+	   var st = $(this).scrollTop();
+	   if (st > lastScrollTop){
+	       calculatorHide();
+	   } else {
+	      // upscroll code
+	   }
+	   lastScrollTop = st;
+	});
+
 	APP.calculatorClose.on('click', function() {
-		$('.calculator-container').addClass('unfixed');
-		$('.main-screen__bg').removeClass('show');
-		setTimeout(function (){
-		  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
-		}, 600);
+		calculatorHide();
 	})
 
 	APP.calculatorShowBtn.on('click', function() {
