@@ -658,6 +658,10 @@ textarea.error {
   transform: translateX(-100%);
 }
 
+.main-screen__bg.show {
+  z-index: 1;
+}
+
 .main-screen__bg.show::after {
   transform: none;
 }
@@ -711,7 +715,7 @@ textarea.error {
   position: relative;
   margin-bottom: 150px;
   margin-top: -140px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .features__bg {
@@ -2505,12 +2509,13 @@ textarea.error {
 
 .calculator-container.fixed {
   position: fixed;
+  z-index: 1;
   top: 100px;
   left: 50%;
   height: calc(100vh - 100px);
   transform: translateX(-50%);
   border-radius: 0;
-  box-shadow: none;
+  box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.07);
   animation: appearance .6s ease-in;
 }
 
