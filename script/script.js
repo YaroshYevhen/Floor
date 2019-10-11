@@ -4,23 +4,79 @@ APP.slider = $('.slider-container');
 APP.sliderArrow = $('.slider-arrow');
 APP.sliderNav = $('.slider-arrow, .slider-dots');
 APP.testimonialsTab = $('.testimonials-tabs__item');
-APP.calculatorShowBtn = $('.calculator-show');
+APP.calculatorShowBtn = $('.main-screen__btn');
 APP.calculatorClose = $('.calculator-close');
+APP.calculatorDropdownBtn = $('.calculator-select__current');
+APP.hamburger = $('.hamburger');
+APP.scrollBtn = $('.scroll-btn');
+APP.socialsOpenBtn = $('.socials__item_share');
+APP.advantagesShowText = $('.advantages-item__show, .aftermatch-item__show');
 
 function calculatorHide() {
 	$('.calculator-container').addClass('unfixed');
 	$('.main-screen__bg').removeClass('show');
+	$('.socials').removeClass('hide');
+	$('html').removeClass('overflow');
+	$('.calculator-container').removeClass('overflow-auto');
 	setTimeout(function (){
 	  $('.calculator-container').removeClass('unfixed').removeClass('fixed');
 	}, 600);
 }
 
 APP.$document.ready(function() {
-	
+	APP.advantagesShowText.on('click', function() {
+		$(this).parents('.advantages-item, .aftermatch-item').find('.advantages-item__text, .aftermatch-item__text').toggleClass('show');
+		$(this).toggleClass('hide');
+	})
+
+	APP.socialsOpenBtn.on('click', function() {
+		$(this).parents('.socials').toggleClass('opened');
+	})
+
+	APP.scrollBtn.on('click', function() {
+		let headerHeight = $('.header').height();
+		let section = $(this).data('scroll');
+    let scrollTo = $(section).offset().top - headerHeight;
+
+    if(section === ".services") {
+    	scrollTo = scrollTo + 270;
+    }
+
+		$('html').removeClass('overflow');
+		$('html, body').animate({ scrollTop: scrollTo }, 500);
+		$('body').removeClass('menu');
+    APP.hamburger.removeClass('active');
+	})
+
+	APP.hamburger.on('click', function(){
+		$('.socials').removeClass('opened');
+    $(this).toggleClass('active');
+    $('body').toggleClass('menu');
+    $('html').toggleClass('overflow');
+    if($('body').hasClass('menu')) {
+      $('.nav').scrollTop(0);
+    }
+  });
+
+	APP.calculatorDropdownBtn.on('click', function() {
+		if($(this).hasClass('active')) {
+			$('.calculator-select__current').removeClass('active');
+		} else {
+			$('.calculator-select__current').removeClass('active');
+			$(this).addClass('active');
+		}
+	})
+
+	APP.$document.on('click', function(event) {
+		if(!$(event.target).hasClass('.calculator-select') && !$(event.target).parents('.calculator-select').length) {
+			$('.calculator-select__current.active').removeClass('active');
+		}
+	})
+
 	let lastScrollTop = 0;
 	$(window).scroll(function(event){
 	   var st = $(this).scrollTop();
-	   if (st > lastScrollTop){
+	   if ((st > lastScrollTop && $('.calculator-container').hasClass('fixed')) && ($(window).width() > 767)){
 	       calculatorHide();
 	   } else {
 	      // upscroll code
@@ -32,11 +88,26 @@ APP.$document.ready(function() {
 		calculatorHide();
 	})
 
+	APP.calculatorShowBtn.on('mouseenter', function() {
+		$('.calculator-container').addClass('will-change');
+		$('.main-screen__bg').addClass('will-change');
+		$('.main-screen__bg .figure').addClass('will-change');
+	})
+
+	APP.calculatorShowBtn.on('mouseleave', function() {
+		$('.calculator-container').removeClass('will-change');
+		$('.main-screen__bg').removeClass('will-change');
+		$('.main-screen__bg .figure').removeClass('will-change');
+	})
+
 	APP.calculatorShowBtn.on('click', function() {
 		$('.calculator-container').addClass('fixed');
-		if($(this).hasClass('main-screen__btn')) {
-			$('html').animate({ scrollTop : 0}, 300)
-			$('.main-screen__bg').addClass('show');
+		$('html').animate({ scrollTop : 0}, 300)
+		$('.main-screen__bg').addClass('show');
+		$('.socials').removeClass('opened').addClass('hide');
+		if($(window).width() <= 767) {
+			$('html').addClass('overflow');
+			$('.calculator-container').addClass('overflow-auto');
 		}
 	})
 

@@ -13,16 +13,21 @@
 <body>
 	<header class="header flex jc-between ai-center">
 		<img src="img/logo.png" alt="Логотип" class="header__logo">
+		<div class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
 		<nav class="nav">
 			<ul class="nav-ul flex jc-between">
-				<li class="nav__li scroll-btn">Преимущества</li>
-				<li class="nav__li scroll-btn">Почему мы?</li>
-				<li class="nav__li scroll-btn">Услуги</li>
-				<li class="nav__li scroll-btn">Мастера</li>
-				<li class="nav__li scroll-btn">Работы</li>
-				<li class="nav__li scroll-btn">Отзывы</li>
-				<li class="nav__li scroll-btn">Партнеры</li>
-				<li class="nav__li scroll-btn">Смеси</li>
+				<li class="nav__li scroll-btn" data-scroll=".features">Преимущества</li>
+				<li class="nav__li scroll-btn" data-scroll=".advantages">Почему мы?</li>
+				<li class="nav__li scroll-btn" data-scroll=".services">Услуги</li>
+				<li class="nav__li scroll-btn" data-scroll=".testimonials">Отзывы</li>
+				<li class="nav__li scroll-btn" data-scroll=".gallery">Работы</li>
+				<li class="nav__li scroll-btn" data-scroll=".masters">Мастера</li>
+				<li class="nav__li scroll-btn" data-scroll=".partners">Партнеры</li>
+				<li class="nav__li scroll-btn" data-scroll=".products">Смеси</li>
 			</ul>
 		</nav>
 		<div class="header-tel flex flex-column">
@@ -31,17 +36,19 @@
 		</div>
 	</header>
 	<main>
-		<section class="main-screen" style="background-image: url(img/main-screen-bg.jpg);">
+		<section class="main-screen">
+			<div class="main-screen__bg-img" style="background-image: url(img/main-screen-bg.jpg);"></div>
 			<div class="main-screen__bg">
 				<img src="img/main-screen-figure.svg" alt="" aria-hidden="true" class="figure">
 				<img src="img/main-screen-figure.svg" alt="" aria-hidden="true" class="figure">
 			</div>
 			<div class="main-screen-container flex jc-center">
+				<div class="main-screen-container__bg"><div class="layer" style="background-image: url(img/main-screen-bg.jpg);"></div></div>
 				<div class="main-screen__title font-alt">
 					<h1 class="bold">Стяжка пола под ключ</h1>
 					<div class="flex jc-between bold"><span>и штукатурка стен</span><span>с гарантией</span></div>
 				</div>
-				<button class="main-screen__btn standart-btn calculator-show">Рассчитать стоимость</button>
+				<button class="main-screen__btn standart-btn">Рассчитать стоимость</button>
 			</div>
 		</section>
 		<section class="features">
@@ -50,6 +57,7 @@
 				<h1 class="features__title title-l">Каковы особенности и преимущества полусухой стяжки пола?</h1>
 				<div class="features-container">
 					<img src="img/features-img.png" alt="" aria-hidden="true" class="features__img">
+					<img src="img/features-img_mobile.png" alt="" aria-hidden="true" class="features__img features__img_mobile">
 					<div class="features-item flex ai-center jc-center">
 						<div class="features-item__bg"></div>
 						<div class="features-item__circle flex flex-column ai-center jc-center">
@@ -88,7 +96,7 @@
 							<span>12</span>
 							<span>часов</span>
 						</div>
-						<span class="features-item__text">Пешая нагрузка на стяжку возможна через 12 часов</span>
+						<span class="features-item__text">Пешая нагрузка на стяжку спустя</span>
 					</div>
 					<div class="features-item flex ai-center jc-center">
 						<div class="features-item__bg"></div>
@@ -109,6 +117,7 @@
 				<div class="advantages-container">
 					<div class="advantages-container-titles flex jc-between">
 						<span class="advantages-container__title extra-bold">Некачественный подход</span>
+						<span class="advantages-container__or text-center">или</span>
 						<span class="advantages-container__title extra-bold">Стяжка в КонгресСтрой</span>
 					</div>
 					<div class="advantages-item flex jc-between">
@@ -119,9 +128,10 @@
 						</div>
 						<div class="advantages-item__icon flex jc-center ai-center"><div class="corner corner-top"></div><div class="layer layer-bottom"></div><div class="border border-top"></div><div class="border border-bottom"></div><div class="layer layer-top"></div><div class="corner corner-bottom"></div><img src="img/advantages-1.svg" aria-hidden="true" alt=""></div>
 						<div class="advantages-item__half">
-							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end">Применяем Евроцемент<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
+							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end ai-center">Применяем Евроцемент<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
 							<p class="advantages-item__text">Производитель этого вида цемента входит в десятку крупнейших производителей цемента в мире. Евроцемент прошел сертификацию и имеет сотни положительных рекомендаций от специалистов со всего мира.</p>
 						</div>
+						<button class="advantages-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="advantages-item flex jc-between">
 						<span class="advantages-item__title">Рабочие</span>
@@ -131,9 +141,10 @@
 						</div>
 						<div class="advantages-item__icon flex jc-center ai-center"><div class="corner corner-top"></div><div class="layer layer-bottom"></div><div class="border border-top"></div><div class="border border-bottom"></div><div class="layer layer-top"></div><div class="corner corner-bottom"></div><img src="img/advantages-2.svg" aria-hidden="true" alt=""></div>
 						<div class="advantages-item__half">
-							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end">Рабочие со стажем в строительстве от 5 лет<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
+							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end ai-center">Рабочие со стажем в строительстве от 5 лет<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
 							<p class="advantages-item__text">У нас работают настоящие профессионалы проверенные временем. Только граждане Украины.</p>
 						</div>
+						<button class="advantages-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="advantages-item flex jc-between">
 						<span class="advantages-item__title">Технология</span>
@@ -143,9 +154,10 @@
 						</div>
 						<div class="advantages-item__icon flex jc-center ai-center"><div class="corner corner-top"></div><div class="layer layer-bottom"></div><div class="border border-top"></div><div class="border border-bottom"></div><div class="layer layer-top"></div><div class="corner corner-bottom"></div><img src="img/advantages-3.svg" aria-hidden="true" alt=""></div>
 						<div class="advantages-item__half">
-							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end">Соблюдение всех международных стандартов изготовления стяжки<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
+							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end ai-center">Соблюдение всех международных стандартов изготовления стяжки<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
 							<p class="advantages-item__text">Мы используем материалы европейского производства, которые имеют все необходимые сертификаты и лицензии подтверждающие их качество. Производим обязательную финишную затирку для придания полу прочности и гладкости, а так же устранения бугров и неровностей</p>
 						</div>
+						<button class="advantages-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="advantages-item flex jc-between">
 						<span class="advantages-item__title">Оборудование</span>
@@ -155,9 +167,10 @@
 						</div>
 						<div class="advantages-item__icon flex jc-center ai-center"><div class="corner corner-top"></div><div class="layer layer-bottom"></div><div class="border border-top"></div><div class="border border-bottom"></div><div class="layer layer-top"></div><div class="corner corner-bottom"></div><img src="img/advantages-4.svg" aria-hidden="true" alt=""></div>
 						<div class="advantages-item__half">
-							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end">Собственное новое оборудование<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
+							<span class="advantages-item__subtitle advantages-item__subtitle_red flex jc-end ai-center">Собственное новое оборудование<span class="icon_plus icon"><span class="layer"></span><span class="check"></span></span></span>
 							<p class="advantages-item__text">Используем собственное оборудование немецкого качества марок Putzmeister, BOSCH, которое обновляется каждый год на новые модели</p>
 						</div>
+						<button class="advantages-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 				</div>
 			</div>
@@ -173,24 +186,28 @@
 						<span class="aftermatch-item__title extra-bold">Появление трещин в стяжке пола</span>
 						<div class="aftermatch-item__img" style="background-image: url(img/aftermatch-1.jpg)"></div>
 						<p class="aftermatch-item__text medium">Самой частой причиной возникновения трещин является низкое качество стяжки в результате допущения ошибок во время монтажа. Так как более жидкий раствор проще наносить на основание, то у новичков всегда возникает желание долить побольше воды. Но это значительно ухудшит итоговое качество смеси. Инструкция, указанная на упаковке должна соблюдаться точно.</p>
+						<button class="aftermatch-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="aftermatch-item flex ai-start">
 						<div class="aftermatch-item__x"></div>
 						<span class="aftermatch-item__title extra-bold">Испорченное финальное покрытие пола</span>
 						<div class="aftermatch-item__img" style="background-image: url(img/aftermatch-2.jpg)"></div>
 						<p class="aftermatch-item__text medium">Образовавшиеся трещины портят напольное покрытие. Это может произойти из за неправильно подобранной толщины покрытия. Меньшая толщина приводит к разрушению стяжки под воздействием внешних нагрузок. Большая толщина покрывается сетью трещин, при оказании сопротивления испаряющейся избыточной влаге.</p>
+						<button class="aftermatch-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="aftermatch-item flex ai-start">
 						<div class="aftermatch-item__x"></div>
 						<span class="aftermatch-item__title extra-bold">Полностью разбитый пол по истечению срока гарантии</span>
 						<div class="aftermatch-item__img" style="background-image: url(img/aftermatch-3.jpg)"></div>
 						<p class="aftermatch-item__text medium">Даже некачественный пол может выглядеть идеально после его укладки, но самая главная проверка для такого пола - это время. Покрытие начнет скрипеть и вздуваться из за внутренних разрушений стяжки.</p>
+						<button class="aftermatch-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 					<div class="aftermatch-item flex ai-start">
 						<div class="aftermatch-item__x"></div>
 						<span class="aftermatch-item__title extra-bold">Дополнительное время и расходы на ремонт испорченного пола</span>
 						<div class="aftermatch-item__img" style="background-image: url(img/aftermatch-4.jpg)"></div>
 						<p class="aftermatch-item__text medium">Испорченное покрытие пола, потрескавшаяся стяжка, потраченные нервы, силы и время на ремонт. Все это дополнительные траты после попытки сэкономить на стяжке пола.</p>
+						<button class="aftermatch-item__show flex ai-center jc-center"><span></span><i class="icon-arrow"></i></button>
 					</div>
 				</div>
 				<p class="aftermatch__warning uppercase bold text-center">Мы знаем как этого избежать!</p>
@@ -208,7 +225,7 @@
 						</ul>
 						<span class="services-item__size text-center medium"><span>40-200</span> м<sup class="top-index">2</sup> <span>/</span> слой <span>50</span> мм</span>
 						<span class="services-item__price bold text-center"><span>350-450</span> грн/м<sup class="top-index">2</sup></span>
-						<button class="services-item__btn standart-btn">Рассчитать стоимость</button>
+						<button class="services-item__btn standart-btn scroll-btn" data-scroll=".calculator">Рассчитать стоимость</button>
 					</div>
 					<div class="services-item services-item_vip flex flex-column ai-center">
 						<h2 class="services-item__title services-item__title_vip extra-bold font-alt flex ai-center jc-center text-center" data-vip-before="high quality" data-vip-after="newest stuff">xxl vip</h2>
@@ -219,7 +236,7 @@
 						</ul>
 						<span class="services-item__size text-center medium"><span>> 500</span> м<sup class="top-index">2</sup> <span>/</span> слой <span>50</span> мм</span>
 						<span class="services-item__price services-item__price_vip bold text-center"><span>до 200</span> грн/м<sup class="top-index">2</sup></span>
-						<button class="services-item__btn standart-btn">Рассчитать стоимость</button>
+						<button class="services-item__btn standart-btn scroll-btn" data-scroll=".calculator">Рассчитать стоимость</button>
 					</div>
 					<div class="services-item flex flex-column ai-center">
 						<h2 class="services-item__title extra-bold font-alt flex ai-center jc-center text-center">средняя площадь</h2>
@@ -229,7 +246,7 @@
 						</ul>
 						<span class="services-item__size text-center medium"><span>200-500</span> м<sup class="top-index">2</sup> <span>/</span> слой <span>50</span> мм</span>
 						<span class="services-item__price bold text-center"><span>250-350</span> грн/м<sup class="top-index">2</sup></span>
-						<button class="services-item__btn standart-btn">Рассчитать стоимость</button>
+						<button class="services-item__btn standart-btn scroll-btn" data-scroll=".calculator">Рассчитать стоимость</button>
 					</div>
 				</div>
 			</div>
@@ -261,7 +278,7 @@
 						</div>
 						<p class="testimonials-slide__text">Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям </p>
 						<div class="testimonials-slide__bottom flex jc-between">
-							<span class="testimonials-slide__more bold uppercase">Читать дальше</span>
+							<span class="testimonials-slide__more bold uppercase flex ai-center">Читать дальше <i class="icon-arrow"></i></span>
 							<span class="testimonials-slide__author italic">Андрей Коваль, 17.05.2018</span>
 						</div>
 					</div>
@@ -276,7 +293,7 @@
 						</div>
 						<p class="testimonials-slide__text">Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям </p>
 						<div class="testimonials-slide__bottom flex jc-between">
-							<span class="testimonials-slide__more bold uppercase">Читать дальше</span>
+							<span class="testimonials-slide__more bold uppercase flex ai-center">Читать дальше <i class="icon-arrow"></i></span>
 							<span class="testimonials-slide__author italic">Андрей Коваль, 17.05.2018</span>
 						</div>
 					</div>
@@ -291,7 +308,7 @@
 						</div>
 						<p class="testimonials-slide__text">Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям </p>
 						<div class="testimonials-slide__bottom flex jc-between">
-							<span class="testimonials-slide__more bold uppercase">Читать дальше</span>
+							<span class="testimonials-slide__more bold uppercase flex ai-center">Читать дальше <i class="icon-arrow"></i></span>
 							<span class="testimonials-slide__author italic">Андрей Коваль, 17.05.2018</span>
 						</div>
 					</div>
@@ -306,7 +323,7 @@
 						</div>
 						<p class="testimonials-slide__text">Значимость этих проблем настолько очевидна, что постоянный количественный рост и сфера нашей активности требуют от нас анализа системы обучения кадров, соответствует насущным потребностям </p>
 						<div class="testimonials-slide__bottom flex jc-between">
-							<span class="testimonials-slide__more bold uppercase">Читать дальше</span>
+							<span class="testimonials-slide__more bold uppercase flex ai-center">Читать дальше <i class="icon-arrow"></i></span>
 							<span class="testimonials-slide__author italic">Андрей Коваль, 17.05.2018</span>
 						</div>
 					</div>
@@ -342,7 +359,6 @@
 					</div>
 				</div>
 			</div>
-			
 		</section>
 		<section class="gallery">
 			<h1 class="gallery__title title-l">Галерея выполненных работ</h1>
@@ -358,7 +374,7 @@
 								<a href="#"><i class="icon-fb"></i></a>
 								<a href="#"><i class="icon-inst"></i></a>
 								<a href="#"><i class="icon-yt"></i></a>
-								<a href="#"><i class="icon-share">1</i></a>
+								<a href="#"><i class="icon-share"></i></a>
 							</div>
 						</div>
 					</div>
@@ -380,7 +396,7 @@
 								<a href="#"><i class="icon-fb"></i></a>
 								<a href="#"><i class="icon-inst"></i></a>
 								<a href="#"><i class="icon-yt"></i></a>
-								<a href="#"><i class="icon-share">1</i></a>
+								<a href="#"><i class="icon-share"></i></a>
 							</div>
 						</div>
 					</div>
@@ -487,11 +503,13 @@
 					</div>
 				</div>
 			</div>
+			<button class="masters__btn alt-btn alt-btn_dark">смотреть всех</button>
 		</section>
 		<section class="process">
 			<div class="wrapper">
 				<h1 class="process__title title-l">Как мы делаем полусухую стяжку пола?</h1>
 				<div class="process-container">
+					<span class="process__decoration"></span>
 					<span class="process__decoration"></span>
 					<span class="process__decoration"></span>
 					<span class="process__decoration"></span>
@@ -562,7 +580,7 @@
 		<section class="clients">
 			<div class="wrapper">
 				<h1 class="clients__title">Наши клиенты</h1>
-				<div class="clients-container flex">
+				<div class="clients-container flex flex-wrap">
 					<div class="clients-item flex jc-center ai-center">
 						<img src="img/clients-1.png" alt="Логотип партнёра" class="clients__img">
 					</div>
@@ -606,66 +624,78 @@
 		</section>
 		<section class="calculator">
 				<h1 class="calculator__title title-l">Хотите заказать услугу?</h1>
-				<div class="calculator-container wrapper flex flex-column ai-center">
-					<div class="calculator-close"></div>
-					<div class="calculator-header flex flex-column ai-center">
-						<span class="calculator-header__title black uppercase">Выберите Услугу</span>
-						<div class="calculator-service flex jc-between ai-center">
-							<span class="calculator-service__item uppercase bold">Стяжка пола</span>
-							<div class="calculator-service__select flex ai-center jc-between">
-								<span></span>
-								<div></div>
-								<span></span>
-							</div>
-							<span class="calculator-service__item uppercase bold">Штукатурка стен</span>
-						</div>
-					</div>
-					<div class="calculator-line flex jc-between">
-						<div class="calculator-half">
-							<span class="calculator__subtitle uppercase black">Ваш район</span>
-							<div class="calculator-select flex ai-center calculator-area">
-								<span class="calculator-select__current medium uppercase">Киевский</span>
-
+					<div class="calculator-container flex flex-column ai-center">
+						<div class="calculator-close"></div>
+						<div class="calculator-header flex flex-column ai-center">
+							<span class="calculator-header__title black uppercase">Выберите Услугу</span>
+							<div class="calculator-service flex jc-between ai-center">
+								<span class="calculator-service__item uppercase bold">Стяжка пола</span>
+								<div class="calculator-service__select flex ai-center jc-between">
+									<span></span>
+									<div></div>
+									<span></span>
+								</div>
+								<span class="calculator-service__item uppercase bold">Штукатурка стен</span>
 							</div>
 						</div>
-						<div class="calculator-half">
-							<span class="calculator__subtitle uppercase black">Объект</span>
-							<div class="calculator-select flex ai-center calculator-object">
-								<span class="calculator-select__current medium uppercase">Квартира</span>
-
+						<div class="calculator-line flex jc-between">
+							<div class="calculator-half">
+								<span class="calculator__subtitle uppercase black">Ваш район</span>
+								<div class="calculator-select flex ai-center calculator-area">
+									<span class="calculator-select__current medium uppercase flex jc-between ai-center"><span>Киевский</span> <i class="icon-dropdown"></i></span>
+									<ul class="calculator-select__ul">
+										<li class="calculator-select__li">Киевский2</li>
+										<li class="calculator-select__li">Киевский3</li>
+										<li class="calculator-select__li">Киевский4</li>
+										<li class="calculator-select__li">Киевский5</li>
+									</ul>
+					
+								</div>
+							</div>
+							<div class="calculator-half">
+								<span class="calculator__subtitle uppercase black">Объект</span>
+								<div class="calculator-select flex ai-center calculator-object">
+									<span class="calculator-select__current medium uppercase flex jc-between ai-center"><span>Квартира</span><i class="icon-dropdown"></i></span>
+									<ul class="calculator-select__ul">
+										<li class="calculator-select__li">Квартира2</li>
+										<li class="calculator-select__li">Квартира3</li>
+										<li class="calculator-select__li">Квартира4</li>
+										<li class="calculator-select__li">Квартира5</li>
+									</ul>
+					
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="calculator-line">
-						<span class="calculator__subtitle uppercase black">Площадь, м<sup class="top-index">2</sup></span>
-						<div class="calculator-size flex jc-between ai-center">
-							<span>10</span>
-							<div id="slider">
-								<div id="custom-handle" class="ui-slider-handle "><span class="number flex jc-center ai-center semibold"></span></div>
+						<div class="calculator-line">
+							<span class="calculator__subtitle uppercase black">Площадь, м<sup class="top-index">2</sup></span>
+							<div class="calculator-size flex jc-between ai-center">
+								<span>10</span>
+								<div id="slider">
+									<div id="custom-handle" class="ui-slider-handle "><span class="number flex jc-center ai-center semibold"></span></div>
+								</div>
+								<span>500</span>
 							</div>
-							<span>500</span>
 						</div>
+						<div class="calculator-line flex jc-between">
+							<div class="calculator-half">
+								<span class="calculator__subtitle uppercase black">Желаемая дата начала работ</span>
+								<input type="date" class="calculator-date calculator-input" placeholder="00.00.0000">
+							</div>
+							<div class="calculator-half">
+								<span class="calculator__subtitle uppercase black">Ваш телефон</span>
+								<input type="tel" class="calculator-tel calculator-input" placeholder="+38 (0ХХ) ХХХ-ХХ-ХХ">
+							</div>
+						</div>
+						<button class="calculator__btn standart-btn">Получить расчет</button>
 					</div>
-					<div class="calculator-line flex jc-between">
-						<div class="calculator-half">
-							<span class="calculator__subtitle uppercase black">Желаемая дата начала работ</span>
-							<input type="date" class="calculator-date calculator-input" placeholder="00.00.0000">
-						</div>
-						<div class="calculator-half">
-							<span class="calculator__subtitle uppercase black">Ваш телефон</span>
-							<input type="tel" class="calculator-tel calculator-input" placeholder="+38 (0ХХ) ХХХ-ХХ-ХХ">
-						</div>
-					</div>
-					<button class="calculator__btn standart-btn">Получить расчет</button>
-				</div>
 		</section>
 		<div class="socials flex flex-column">
 			<a href="#" class="socials__item flex ai-center jc-center"><i class="icon-callback"></i></a>
 			<a href="#" class="socials__item flex ai-center jc-center"><i class="icon-fb"></i></a>
 			<a href="#" class="socials__item flex ai-center jc-center"><i class="icon-inst"></i></a>
 			<a href="#" class="socials__item flex ai-center jc-center"><i class="icon-yt"></i></a>
+			<div class="socials__item socials__item_share flex ai-center jc-center"><i class="icon-share"></i></div>
 		</div>
-		<div class="scroll-arrow"></div>
 	</main>
 	<footer class="footer">
 		<div class="footer-top flex ai-center">
@@ -676,7 +706,7 @@
 				</div>
 				<div class="address-half flex flex-column jc-between">
 					<span class="address__address">Украина, г. Харьков, ул. Сумская, 31, офис 20</span>
-					<span class="address__shedule">Режим работы: ежедневно с 9:00 до 20:00</span>
+					<span class="address__shedule"><span class="nowrap">Режим работы:</span> <span class="nowrap">ежедневно с 9:00 до 20:00</span></span>
 				</div>
 			</address>
 		</div>
