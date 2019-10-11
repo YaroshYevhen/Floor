@@ -607,6 +607,30 @@
 /********* max-width: 767px *********/
 
 @media(max-width: 767px) {
+	.modal {
+		&-container {
+			width: 360px;
+			padding: 0 30px 30px;
+		}
+		&__title {
+			height: 120px;
+			font-size: 28px;
+			line-height: 32px;
+			margin-bottom: 30px;
+		}
+		&__button {
+			width: 100%;
+		}
+		&-label {
+			width: 100%;
+			&:first-of-type {
+				margin-right: 0;
+			}
+			&:not(:first-of-type) {
+				margin-top: 25px;
+			}
+		}
+	}
 	.slider-arrow {
 		display: none;
 	}

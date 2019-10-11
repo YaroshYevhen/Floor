@@ -41,6 +41,7 @@ function closeModal() {
   APP.modalStar.removeClass('active');
   $('.modal-stars__container').removeClass('active');
   $('.modal-stars__text').text('');
+  $('.modal').find('textarea, input').val('');
 }
 
 function dotsChange(slider) {
@@ -126,6 +127,11 @@ APP.$document.ready(function() {
 
     modal.addClass('active');
     $('html').addClass('overflow');
+    if($(this).hasClass('products-item__btn')) {
+    	let title = $(this).parents('.products-item').find('.products-item__name').text();
+
+    	modal.find('textarea').val('Хочу приобрести смесь ' + title + '.');
+    }
   });
 
 	$('.modal-close').on('click', function() {
