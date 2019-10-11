@@ -1,5 +1,17 @@
 @charset "UTF-8";
 @media (min-width: 992px) {
+  .testimonials-slide__more:hover, .calculator-service__item:not(.current):hover {
+    color: #e30613;
+  }
+  .testimonials-slide__more:hover:active, .calculator-service__item:not(.current):hover:active {
+    color: #3d3d3d;
+  }
+  .modal-stars__container:hover .modal-stars__item {
+    color: #c00d0e;
+  }
+  .modal-stars__item:hover ~ .modal-stars__item {
+    color: #ababab;
+  }
   .testimonials-tabs__item:not(.current):hover {
     color: #e30613;
   }
@@ -9,10 +21,10 @@
   .testimonials-tabs__item:not(.current):hover:active ~ .testimonials-tabs__track span {
     background-color: #000;
   }
-  .calculator-close:hover {
+  .modal-close:hover, .calculator-close:hover {
     transform: rotate(90deg);
   }
-  .calculator-close:hover::before, .calculator-close:hover::after {
+  .modal-close:hover::before, .modal-close:hover::after, .calculator-close:hover::before, .calculator-close:hover::after {
     background-color: #000;
   }
   .gallery-slide__socials a:hover, .socials__item:hover {
@@ -73,7 +85,7 @@
   .socials {
     top: 150px;
   }
-  .socials__item + .socials__item:nth-of-type(2) {
+  .socials__item + .socials__item:nth-child(2) {
     margin-top: 20px;
   }
 }
@@ -112,10 +124,10 @@
     align-self: flex-end;
     flex-shrink: 0;
   }
-  .socials__item:first-of-type {
+  .socials__item:first-child {
     align-self: flex-start;
   }
-  .socials__item + .socials__item:nth-of-type(2) {
+  .socials__item + .socials__item:nth-child(2) {
     margin-top: 140px;
   }
   .socials.hide {
@@ -549,7 +561,7 @@
     font-size: 20px;
     line-height: 30px;
   }
-  .socials__item + .socials__item:not(.socials__item_share):nth-of-type(2) {
+  .socials__item + .socials__item:not(.socials__item_share):nth-child(2) {
     margin-top: 90px;
   }
   .socials {
@@ -566,10 +578,10 @@
   .socials__item:first-child {
     display: none;
   }
-  .socials__item:nth-of-type(n + 2) {
+  .socials__item:nth-child(n + 2):not(.socials__item_share) {
     display: none;
   }
-  .socials.opened .socials__item:nth-of-type(n + 2) {
+  .socials.opened .socials__item:nth-child(n + 2):not(.socials__item_share) {
     display: flex;
     animation: fade-in .3s ease-in;
   }

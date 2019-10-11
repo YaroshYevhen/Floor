@@ -11,6 +11,47 @@ APP.hamburger = $('.hamburger');
 APP.scrollBtn = $('.scroll-btn');
 APP.socialsOpenBtn = $('.socials__item_share');
 APP.advantagesShowText = $('.advantages-item__show, .aftermatch-item__show');
+APP.sliderDots = $('.slider-dots');
+APP.modalBtn = $('.modal-btn');
+APP.closeModal = $('.modal-close');
+APP.modalStar = $('.modal-stars__item');
+APP.dropdownItem = $('.calculator-select__li');
+APP.calculatorService = $('.calculator-service__item');
+
+function modalStarsText(star) {
+	let textOutput = $('.modal-stars__text');
+
+	if($(star).index('.modal-stars__item') === 0) {
+			textOutput.text('Очень плохо.')
+		} else if($(star).index('.modal-stars__item') === 1) {
+			textOutput.text('Плохо.')
+		} else if($(star).index('.modal-stars__item') === 2) {
+			textOutput.text('Нормально.')
+		} else if($(star).index('.modal-stars__item') === 3) {
+			textOutput.text('Хорошо.')
+		} else if($(star).index('.modal-stars__item') === 4) {
+			textOutput.text('Отлично!')
+		}
+}
+
+function closeModal() {
+  $('.modal').scrollTop(0).removeClass('active');
+  $('html').removeClass('overflow');
+  $('.modal input').removeClass('error');
+  APP.modalStar.removeClass('active');
+  $('.modal-stars__container').removeClass('active');
+  $('.modal-stars__text').text('');
+}
+
+function dotsChange(slider) {
+	let dots = $(slider).find('.slider-dots');
+	let currentSlideIndex = $(slider).hasClass('gallery-slider')? 
+			$(slider).find('.slider-item.second').data('index') : 
+			$(slider).find('.slider-item.first').data('index');
+
+	dots.find('.slider-dots__item.current').removeClass('current');
+	dots.find('.slider-dots__item[data-index="' + currentSlideIndex + '"]').addClass('current');
+}
 
 function calculatorHide() {
 	$('.calculator-container').addClass('unfixed');
@@ -24,6 +65,126 @@ function calculatorHide() {
 }
 
 APP.$document.ready(function() {
+	$('.preloader').delay(500).fadeToggle(500);
+  setTimeout(function (){
+    $('html').removeClass('overflow');
+  }, 500);
+
+  $('.calculator-service__select .selector').on('click', function() {
+  	if($(this).hasClass('right')) {
+  		$(this).removeClass('right').addClass('left');
+  		$('.calculator-service__item[data-choise="left"]').addClass('current');
+  		$('.calculator-service__item[data-choise="right"]').removeClass('current');
+  	} else {
+  		$(this).removeClass('left').addClass('right');
+  		$('.calculator-service__item[data-choise="right"]').addClass('current');
+  		$('.calculator-service__item[data-choise="left"]').removeClass('current');
+  	}
+  })
+
+  APP.calculatorService.on('click', function() {
+  	let choise = $(this).data('choise');
+
+  	$('.calculator-service__item.current').removeClass('current');
+  	$(this).addClass('current');
+  	$('.calculator-service__select .selector').removeClass('left').removeClass('right').addClass(choise);
+  })
+
+  APP.dropdownItem.on('click', function() {
+		let text = $(this).text();
+		let currentChoice = $(this).parents('.calculator-select').find('.calculator-select__current span');
+
+		currentChoice.text(text);
+		$('.calculator-select__li.current').removeClass('current');
+		$(this).addClass('current');
+		$(this).parents('.calculator-select').find('.calculator-select__current').removeClass('active');
+	})
+
+  APP.modalStar.on('click', function() {
+  	$('.modal-stars__item.active').removeClass('active');
+  	$(this).addClass('active');
+  	$(this).parents('.modal-stars__container').addClass('active');
+  })
+
+	APP.modalStar.on('mouseenter', function() {
+		modalStarsText(this);
+	})
+
+	APP.modalStar.on('mouseleave', function() {
+		let textOutput = $('.modal-stars__text');
+
+		if(!$('.modal-stars__container').hasClass('active')) {
+			textOutput.text('');
+		} else {
+			modalStarsText($('.modal-stars__item.active'));
+		}
+	});
+
+	APP.modalBtn.on('click', function() {
+    let attr = $(this).attr('data-target');
+    let modal = $('.modal[data-target="' + attr + '"]');
+
+    modal.addClass('active');
+    $('html').addClass('overflow');
+  });
+
+	$('.modal-close').on('click', function() {
+    closeModal();
+  });
+
+  $('.modal').on('click', function(event){
+    if($(event.target).hasClass('modal')){
+      closeModal();
+    }
+  });
+
+  $(document).keyup(function(e) { 
+    if (e.keyCode == 27) { 
+      closeModal();
+    } 
+  });
+
+	APP.sliderDots.each(function() {
+		let slider = $(this).parents('.slider-container');
+		let slide = slider.find('.slider-item');
+		let dots = $(this);
+
+		slide.each(function(key) {
+			let dot = '<span class="slider-dots__item" ' + 'data-index="' + (key + 1) + '"></span>';
+			if (key === 0) {
+				dot = '<span class="slider-dots__item current" ' + 'data-index="' + (key + 1) + '"></span>';
+			}
+			dots.append(dot);
+		})
+	})
+
+	$('.slider-dots__item').on('click', function() {
+		let slider = $(this).parents('.slider-container');
+		let currentIndex = slider.find('.slider-dots__item.current').data('index');
+		let targetIndex = $(this).data('index');
+
+		let diff;
+		if(currentIndex < targetIndex) {
+			diff = targetIndex - currentIndex;
+			while(diff > 0) {
+				diff--;
+				setTimeout(function (){
+					slider.find('.slider-arrow_next').click();
+				}, (diff * 100));
+			}
+		} else if(currentIndex > targetIndex) {
+			diff = currentIndex - targetIndex;
+				while(diff > 0) {
+					diff--;
+					setTimeout(function (){
+						slider.find('.slider-arrow_prev').click();
+					}, (diff * 100));
+				}
+			}
+	})
+
+	
+
 	APP.advantagesShowText.on('click', function() {
 		$(this).parents('.advantages-item, .aftermatch-item').find('.advantages-item__text, .aftermatch-item__text').toggleClass('show');
 		$(this).toggleClass('hide');
@@ -187,6 +348,43 @@ APP.$document.ready(function() {
       lastSlide.remove();
 		}
 
-			// countSlides(slider);
+			dotsChange(slider);
 	})
 })
+
+window.addEventListener("DOMContentLoaded", function() {
+  [].forEach.call( document.querySelectorAll('input[type="tel"]'), function(input) {
+  var keyCode;
+  function mask(event) {
+      event.keyCode && (keyCode = event.keyCode);
+      var pos = this.selectionStart;
+      if (pos < 3) event.preventDefault();
+      var matrix = "+38 (0__) ___ ____",
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = this.value.replace(/\D/g, ""),
+          new_value = matrix.replace(/[_\d]/g, function(a) {
+              return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+          });
+      i = new_value.indexOf("_");
+      if (i != -1) {
+          i < 5 && (i = 3);
+          new_value = new_value.slice(0, i)
+      }
+      var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+          function(a) {
+              return "\\d{1," + a.length + "}"
+          }).replace(/[+()]/g, "\\$&");
+      reg = new RegExp("^" + reg + "$");
+      if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+      if (event.type == "blur" && this.value.length < 5)  this.value = ""
+  }
+
+  input.addEventListener("input", mask, false);
+  input.addEventListener("focus", mask, false);
+  input.addEventListener("blur", mask, false);
+  input.addEventListener("keydown", mask, false)
+
+});
+
+});
