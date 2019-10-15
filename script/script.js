@@ -71,6 +71,42 @@ APP.$document.ready(function() {
     $('html').removeClass('overflow');
   }, 500);
 
+  jQuery('body').swipe( {
+    swipeStatus:function(event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection)
+    {
+        if (phase=="start"){
+            // сработает в начале swipe
+        } 
+        if (phase=="end"){ 
+            //сработает через 20 пикселей то число которое выбрали в threshold
+            if (direction == 'left') {
+              APP.slider.each(function() {
+					      let isCanSlide = (($(window).scrollTop() + $(window).height() > $(this).offset().top) && ($(window).scrollTop() < $(this).offset().top)) ? true : false;
+					      if (isCanSlide) { 
+					        $(this).find('.slider-arrow_next').click();
+					      }
+					    })
+            }
+            if (direction == 'right') {
+                APP.slider.each(function() {
+						      let isCanSlide = (($(window).scrollTop() + $(window).height() > $(this).offset().top) && ($(window).scrollTop() < $(this).offset().top)) ? true : false;
+						      if (isCanSlide) { 
+						        $(this).find('.slider-arrow_prev').click();
+						      }
+						    })
+            }
+            if (direction == 'up') {
+                //сработает при движении вверх
+            }
+            if (direction == 'down') {
+                //сработает при движении вниз
+            }
+        }
+ },
+ triggerOnTouchEnd:false,
+ threshold:20 // сработает через 20 пикселей
+});
+
   $('.calculator-service__select .selector').on('click', function() {
   	if($(this).hasClass('right')) {
   		$(this).removeClass('right').addClass('left');
