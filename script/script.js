@@ -71,7 +71,7 @@ APP.$document.ready(function() {
     $('html').removeClass('overflow');
   }, 500);
 
-  jQuery('body').swipe( {
+  jQuery('.slider-container').swipe( {
     swipeStatus:function(event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection)
     {
         if (phase=="start"){
@@ -80,20 +80,10 @@ APP.$document.ready(function() {
         if (phase=="end"){ 
             //сработает через 20 пикселей то число которое выбрали в threshold
             if (direction == 'left') {
-              APP.slider.each(function() {
-					      let isCanSlide = (($(window).scrollTop() + $(window).height() > $(this).offset().top) && ($(window).scrollTop() < $(this).offset().top)) ? true : false;
-					      if (isCanSlide) { 
-					        $(this).find('.slider-arrow_next').click();
-					      }
-					    })
+			        $(this).find('.slider-arrow_next').click();
             }
             if (direction == 'right') {
-                APP.slider.each(function() {
-						      let isCanSlide = (($(window).scrollTop() + $(window).height() > $(this).offset().top) && ($(window).scrollTop() < $(this).offset().top)) ? true : false;
-						      if (isCanSlide) { 
-						        $(this).find('.slider-arrow_prev').click();
-						      }
-						    })
+			        $(this).find('.slider-arrow_prev').click();
             }
             if (direction == 'up') {
                 //сработает при движении вверх
