@@ -12,11 +12,48 @@ APP.scrollBtn = $('.scroll-btn');
 APP.socialsOpenBtn = $('.socials__item_share');
 APP.advantagesShowText = $('.advantages-item__show, .aftermatch-item__show');
 APP.sliderDots = $('.slider-dots');
-APP.modalBtn = $('.modal-btn');
 APP.closeModal = $('.modal-close');
 APP.modalStar = $('.modal-stars__item');
 APP.dropdownItem = $('.calculator-select__li');
 APP.calculatorService = $('.calculator-service__item');
+APP.inputFile = $('#wpmtst_featured_image');
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        $('.input-file__btn')
+            .css("background-image", ("url(" + e.target.result + ")"));
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function fillCalculatorForm() {
+	$('.calculator-select__current').each(function() {
+		let target = $(this).data('target');
+		let value = $(this).find('span').text();
+
+		$(target).val(value);
+	})
+	$('#wpforms-187-field_2').val($('.calculator-service__item.current').text());
+	$('#wpforms-187-field_6').val($('.calculator-size .number').text());
+}
+
+function fillWpForm(element) {
+  var target = $(element).data('target'),
+      thisVal = $(element).val();
+  
+  if($(element).hasClass('js-text')){
+    $(target).text(thisVal);
+	} else if($(element).hasClass('calculator-select__current')) {
+		$(target).text($(element).find('span').text());
+	} else {
+    $(target).val(thisVal);
+  }
+}
 
 function modalStarsText(star) {
 	let textOutput = $('.modal-stars__text');
@@ -36,12 +73,15 @@ function modalStarsText(star) {
 
 function closeModal() {
   $('.modal').scrollTop(0).removeClass('active');
-  $('html').removeClass('overflow');
   $('.modal input').removeClass('error');
   APP.modalStar.removeClass('active');
   $('.modal-stars__container').removeClass('active');
   $('.modal-stars__text').text('');
   $('.modal').find('textarea, input').val('');
+  if(!$('body').hasClass('menu')) {
+  	$('html').removeClass('overflow');
+	}
+	$('.modal[data-target="testimonial-full"] .modal-container').html('<div class="modal-close"></div>');
 }
 
 function dotsChange(slider) {
@@ -65,13 +105,73 @@ function calculatorHide() {
 	}, 600);
 }
 
-APP.$document.ready(function() {
-	$('.preloader').delay(500).fadeToggle(500);
-  setTimeout(function (){
-    $('html').removeClass('overflow');
-  }, 500);
+window.onload = function() {
+  $('.preloader').fadeToggle(500);
 
-  jQuery('.slider-container').swipe( {
+  $('html').removeClass('overflow');
+};
+
+APP.$document.ready(function() {
+	
+	
+	fillWpForm($('.js-change'));
+	fillCalculatorForm();
+
+	$('.testimonials-slide__more').each(function() {
+		if($(this).parents('.testimonials-slide').find('.testimonials-slide__text p').height() < 145) {
+			$(this).hide();
+		}
+	})
+
+	$(document).on('click', '.gallery-slide__socials > div', function() {
+		$(this).parents('.gallery-slide__socials').toggleClass('show');
+	})
+
+	APP.inputFile.on('change', function(event) {
+    var file = event.target.files[0],
+        fileName = file.name,
+        replace = fileName.replace(/\s/g,'_');
+
+    if(file) {
+      $('.file-label').addClass('file');
+    } else {
+      $('.file-label').removeClass('file');
+    }
+    $('.input-file__text').html(replace);
+    readURL(this);
+  });
+
+  $('.file-label').on('click', function(event) {
+    if($(this).hasClass('file')) {
+      event.preventDefault();
+      $('.input-file__text').text('Прикрепить фото');
+    APP.inputFile.val('');
+    $('.file-label').removeClass('file');
+    $('.input-file__btn').css("background-image", "");
+    }
+  });
+
+	if((($('.masters-item').length < 5) && ($(window).width() > 1199)) || (($('.masters-item').length < 4) && ($(window).width() <= 1199))) {
+		$('.masters__btn').hide();
+	}
+
+	$('.masters__btn').on('click', function() {
+		$('.masters-item').show();
+		$(this).hide();
+	})
+
+	$('input').on('blur', function() {
+		if($('.calculator-container').hasClass('fixed')) {
+			$('html, body').scrollTop(0);
+		}
+	})
+	$('input').on('change', function() {
+		if($('.calculator-container').hasClass('fixed')) {
+			$('html, body').scrollTop(0);
+		}
+	})
+
+	jQuery('.slider-container').swipe( {
     swipeStatus:function(event, phase, direction, distance, duration, fingerCount, fingerData, currentDirection)
     {
         if (phase=="start"){
@@ -97,24 +197,37 @@ APP.$document.ready(function() {
 	 threshold:20 // сработает через 20 пикселей
 	});
 
-  $('.calculator-service__select .selector').on('click', function() {
-  	if($(this).hasClass('right')) {
-  		$(this).removeClass('right').addClass('left');
-  		$('.calculator-service__item[data-choise="left"]').addClass('current');
-  		$('.calculator-service__item[data-choise="right"]').removeClass('current');
-  	} else {
-  		$(this).removeClass('left').addClass('right');
-  		$('.calculator-service__item[data-choise="right"]').addClass('current');
-  		$('.calculator-service__item[data-choise="left"]').removeClass('current');
-  	}
-  })
+	$('.js-change').on('keyup', function(){
+    fillWpForm(this)
+	});
+	
+	$(document).on('click', '.submit-btn', function() {
+		let target = $(this).data('target');
+		let parent = $(this).parents('.modal-container, .calculator-container');
+    let requiredInput = parent.find('input.required, textarea.required');
+
+    if($(this).hasClass('calculator__btn')) {
+    	fillCalculatorForm();
+    }
+		$(target).click();
+		if(!requiredInput.val()) {
+      requiredInput.css({'border-color' : '#e21e1e'});
+		}
+		if($(this).hasClass('calculator__btn') && !$('.calculator-service__item.current').length) {
+			$('.calculator-service').css({'border-color' : '#e21e1e'});
+		}
+	})
 
   APP.calculatorService.on('click', function() {
   	let choise = $(this).data('choise');
 
   	$('.calculator-service__item.current').removeClass('current');
   	$(this).addClass('current');
-  	$('.calculator-service__select .selector').removeClass('left').removeClass('right').addClass(choise);
+  	if(choise === 'right') {
+  		$('.calculator-service__select .selector').css({'left' : '39px'});
+  	} else if(choise === 'left') {
+  		$('.calculator-service__select .selector').css({'left' : '-38px'});
+  	}
   })
 
   APP.dropdownItem.on('click', function() {
@@ -128,6 +241,9 @@ APP.$document.ready(function() {
 	})
 
   APP.modalStar.on('click', function() {
+		let target = $(this).data('target');
+
+		$(target).click();
   	$('.modal-stars__item.active').removeClass('active');
   	$(this).addClass('active');
   	$(this).parents('.modal-stars__container').addClass('active');
@@ -147,20 +263,30 @@ APP.$document.ready(function() {
 		}
 	});
 
-	APP.modalBtn.on('click', function() {
+	$(document).on('click', '.modal-btn', function() {
     let attr = $(this).attr('data-target');
     let modal = $('.modal[data-target="' + attr + '"]');
 
-    modal.addClass('active');
+    
     $('html').addClass('overflow');
     if($(this).hasClass('products-item__btn')) {
     	let title = $(this).parents('.products-item').find('.products-item__name').text();
 
     	modal.find('textarea').val('Хочу приобрести смесь ' + title + '.');
-    }
+		} else if($(this).hasClass('testimonials-slide__more')) {
+			let parent = $(this).parents('.testimonials-slide');
+			let image = parent.find('.testimonials-slide__img').clone();
+			let stars = parent.find('.testimonials-slide__stars').clone();
+			let text = parent.find('.testimonials-slide__text').clone();
+			let author = parent.find('.testimonials-slide__author').clone();
+
+			modal.find('.modal-container').append(image, stars, text, author);
+		}
+		
+		modal.addClass('active');
   });
 
-	$('.modal-close').on('click', function() {
+	$(document).on('click', '.modal-close', function() {
     closeModal();
   });
 
@@ -231,6 +357,15 @@ APP.$document.ready(function() {
 		let section = $(this).data('scroll');
     let scrollTo = $(section).offset().top - headerHeight;
 
+    if($(this).hasClass('services-item__btn')) {
+    	let value = $(this).data('value');
+
+    	$('.calculator-service__select .selector').css({'left' : '-38px'});
+    	$('.calculator-service__item[data-choise="left"]').addClass('current');
+    	$( '#slider' ).slider( "option", "values", [ value ] );
+    	$('#custom-handle .number').text(value);
+    }
+
     if(section === ".services") {
     	scrollTo = scrollTo + 270;
     }
@@ -249,6 +384,7 @@ APP.$document.ready(function() {
     if($('body').hasClass('menu')) {
       $('.nav').scrollTop(0);
     }
+
   });
 
 	APP.calculatorDropdownBtn.on('click', function() {
@@ -324,6 +460,7 @@ APP.$document.ready(function() {
 		let slidesCount = slider.find('.slider-item').length;
 
 		if(($(window).width() > 1199) && (slider.hasClass('testimonials-slider') && slidesCount < 3) || 
+			 (slider.hasClass('gallery-slider') && slidesCount < 2) || ($(window).width() > 767) && (slider.hasClass('testimonials-slider') && slidesCount < 2) || 
 			 (slider.hasClass('gallery-slider') && slidesCount < 2)) {
 			$(this).hide();
 		}
@@ -381,6 +518,7 @@ APP.$document.ready(function() {
 		}
 
 			dotsChange(slider);
+			$('.gallery-slide__socials.show').removeClass('show');
 	})
 })
 

@@ -683,6 +683,7 @@
 		.nav {
 			padding-right: 0;
 			padding-left: 0;
+			overflow: auto;
 		}
 		.socials__item:first-child {
 			display: flex;
@@ -945,6 +946,10 @@
 		&-slide {
 			width: 330px;
 			transform: translateX(390px);
+			&__video {
+				width: 330px;
+				height: 220px;
+			}
 			&.first {
 				transform: translateX(30px);
 			}
